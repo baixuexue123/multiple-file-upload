@@ -9,9 +9,11 @@ from .models import Photo
 
 
 class BasicUploadView(View):
+    template = 'photos/basic_upload/index.html'
+
     def get(self, request):
         photos_list = Photo.objects.all()
-        return render(self.request, 'photos/basic_upload/index.html', {'photos': photos_list})
+        return render(self.request, self.template, {'photos': photos_list})
 
     def post(self, request):
         form = PhotoForm(self.request.POST, self.request.FILES)
@@ -24,12 +26,15 @@ class BasicUploadView(View):
 
 
 class ProgressBarUploadView(View):
+    template = 'photos/progress_bar_upload/index.html'
+
     def get(self, request):
         photos_list = Photo.objects.all()
-        return render(self.request, 'photos/progress_bar_upload/index.html', {'photos': photos_list})
+        return render(self.request, self.template, {'photos': photos_list})
 
     def post(self, request):
-         # You don't need this line. This is just to delay the process so you can see the progress bar testing locally.
+        # You don't need this line. This is just to delay
+        # the process so you can see the progress bar testing locally.
         time.sleep(0)
         form = PhotoForm(self.request.POST, self.request.FILES)
         if form.is_valid():
@@ -41,9 +46,11 @@ class ProgressBarUploadView(View):
 
 
 class DragAndDropUploadView(View):
+    template = 'photos/drag_and_drop_upload/index.html'
+
     def get(self, request):
         photos_list = Photo.objects.all()
-        return render(self.request, 'photos/drag_and_drop_upload/index.html', {'photos': photos_list})
+        return render(self.request, self.template, {'photos': photos_list})
 
     def post(self, request):
         form = PhotoForm(self.request.POST, self.request.FILES)
