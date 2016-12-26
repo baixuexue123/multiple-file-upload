@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import time
 
 from django.shortcuts import render, redirect
